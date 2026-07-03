@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 1rem;
+
+  --background: hsl(40 33% 98%);
+  --foreground: hsl(222 20% 10%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222 20% 10%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222 20% 10%);
+
+  --primary: hsl(160 84% 28%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(160 20% 95%);
+  --secondary-foreground: hsl(160 30% 15%);
+
+  --muted: hsl(220 14% 96%);
+  --muted-foreground: hsl(220 9% 40%);
+
+  --accent: hsl(38 92% 50%);
+  --accent-foreground: hsl(30 45% 12%);
+
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border: hsl(220 14% 88%);
+  --input: hsl(220 14% 88%);
+  --ring: hsl(160 84% 28%);
+}
+
+.dark {
+  --background: hsl(222 32% 6%);
+  --foreground: hsl(210 20% 96%);
+
+  --card: hsl(222 26% 9%);
+  --card-foreground: hsl(210 20% 96%);
+
+  --popover: hsl(222 26% 9%);
+  --popover-foreground: hsl(210 20% 96%);
+
+  --primary: hsl(158 64% 45%);
+  --primary-foreground: hsl(222 30% 6%);
+
+  --secondary: hsl(222 20% 14%);
+  --secondary-foreground: hsl(210 20% 90%);
+
+  --muted: hsl(222 20% 14%);
+  --muted-foreground: hsl(217 12% 65%);
+
+  --accent: hsl(43 90% 55%);
+  --accent-foreground: hsl(30 45% 10%);
+
+  --destructive: hsl(0 70% 55%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border: hsl(222 20% 18%);
+  --input: hsl(222 20% 18%);
+  --ring: hsl(158 64% 45%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 0.5rem);
+  --radius-md: calc(var(--radius) - 0.25rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+
+  --font-sans: "Cairo Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+}
+
+/* شريط تمرير أنيق */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsl(160 20% 60% / 0.35);
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: hsl(158 30% 45% / 0.35);
+}
+
+/* توهج زخرفي هادئ خلف قسم الهيرو */
+.hero-glow {
+  background:
+    radial-gradient(
+      60% 50% at 15% 0%,
+      color-mix(in oklab, var(--primary) 16%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      50% 40% at 100% 10%,
+      color-mix(in oklab, var(--accent) 14%, transparent),
+      transparent 60%
+    );
+}
